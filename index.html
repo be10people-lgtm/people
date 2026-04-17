@@ -835,22 +835,48 @@ const bannerData = "/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAA
 document.getElementById('logo-img').src = 'data:image/png;base64,' + logoData;
 document.getElementById('banner-img').src = 'data:image/png;base64,' + bannerData;
 
-function submitForm(e) {
+async function submitForm(e) {
   e.preventDefault();
   const name    = document.getElementById('cf-name').value;
   const company = document.getElementById('cf-company').value;
   const email   = document.getElementById('cf-email').value;
   const msg     = document.getElementById('cf-msg').value;
-  const subject = encodeURIComponent('Diagnóstico IA - Be+People');
-  const body    = encodeURIComponent(
-    'Nombre: ' + name + '\n' +
-    'Empresa: ' + company + '\n' +
-    'Email: ' + email + '\n\n' +
-    'Consulta:\n' + msg
-  );
-  window.location.href = 'mailto:hola@bepeople.com.ar?subject=' + subject + '&body=' + body;
-  document.getElementById('form-status').style.display = 'block';
-  e.target.reset();
+  const status  = document.getElementById('form-status');
+  const btn     = e.target.querySelector('button[type="submit"]');
+
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+
+  try {
+    const res = await fetch('https://formspree.io/f/xwvaolvy', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        nombre: name,
+        empresa: company,
+        email: email,
+        consulta: msg
+      })
+    });
+
+    if (res.ok) {
+      status.textContent = '¡Mensaje enviado! Te contactamos en menos de 24 hs.';
+      status.style.color = 'var(--accent3)';
+      status.style.display = 'block';
+      e.target.reset();
+    } else {
+      status.textContent = 'Hubo un error al enviar. Por favor escribinos a hola@bepeople.com.ar';
+      status.style.color = '#f87171';
+      status.style.display = 'block';
+    }
+  } catch (err) {
+    status.textContent = 'Hubo un error al enviar. Por favor escribinos a hola@bepeople.com.ar';
+    status.style.color = '#f87171';
+    status.style.display = 'block';
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'Identificar mis procesos automatizables →';
 }
 </script>
 </body>
