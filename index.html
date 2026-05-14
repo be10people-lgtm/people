@@ -776,6 +776,303 @@
   </div>
 </section>
 
+<!-- DIAGNOSTICO IA WIDGET -->
+<section id="diagnostico" style="padding:80px 0 40px;">
+<div class="section-inner">
+  <div style="text-align:center;margin-bottom:48px;">
+    <div class="section-tag">Diagnóstico gratuito</div>
+    <h2 class="section-title" style="max-width:600px;margin:0 auto 16px;">Descubrí qué procesos podés automatizar en tu empresa</h2>
+    <p class="section-text" style="max-width:480px;margin:0 auto;">4 preguntas · resultado instantáneo · sin registro previo</p>
+  </div>
+
+  <div id="diag-widget" style="max-width:680px;margin:0 auto;">
+
+    <!-- PROGRESS BAR -->
+    <div style="margin-bottom:32px;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+        <span id="diag-step-label" style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.15em;">Paso 1 de 4</span>
+        <span id="diag-pct" style="font-size:0.75rem;color:var(--accent3);">25%</span>
+      </div>
+      <div style="height:3px;background:var(--border);border-radius:999px;overflow:hidden;">
+        <div id="diag-bar" style="height:100%;width:25%;background:linear-gradient(90deg,var(--accent1),var(--accent3));border-radius:999px;transition:width 0.4s ease;"></div>
+      </div>
+    </div>
+
+    <!-- STEP 1: SECTOR -->
+    <div id="diag-s1" class="diag-step">
+      <p style="font-size:1.05rem;color:#fff;font-weight:500;margin-bottom:24px;">¿En qué sector está tu empresa?</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;">
+        <button class="diag-opt" data-val="Retail / Comercio">🛍️ Retail</button>
+        <button class="diag-opt" data-val="Logística / Distribución">🚛 Logística</button>
+        <button class="diag-opt" data-val="Salud / Clínicas">🏥 Salud</button>
+        <button class="diag-opt" data-val="Alimentos / Manufactura">🏭 Manufactura</button>
+        <button class="diag-opt" data-val="Estudio Jurídico / Contable">⚖️ Legal / Contable</button>
+        <button class="diag-opt" data-val="RRHH / Servicios Profesionales">👥 RRHH / Servicios</button>
+        <button class="diag-opt" data-val="Agropecuario / Agroindustria">🌾 Agro</button>
+        <button class="diag-opt" data-val="Tecnología / Software">💻 Tecnología</button>
+        <button class="diag-opt" data-val="Construcción / Inmobiliaria">🏗️ Construcción</button>
+        <button class="diag-opt" data-val="Otro">Otro</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: TAMAÑO -->
+    <div id="diag-s2" class="diag-step" style="display:none;">
+      <p style="font-size:1.05rem;color:#fff;font-weight:500;margin-bottom:24px;">¿Cuántas personas tiene tu equipo?</p>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:400px;">
+        <button class="diag-opt" data-val="10 a 30 personas">10 — 30</button>
+        <button class="diag-opt" data-val="31 a 80 personas">31 — 80</button>
+        <button class="diag-opt" data-val="81 a 200 personas">81 — 200</button>
+        <button class="diag-opt" data-val="más de 200 personas">+ 200</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: AREAS (multi-select) -->
+    <div id="diag-s3" class="diag-step" style="display:none;">
+      <p style="font-size:1.05rem;color:#fff;font-weight:500;margin-bottom:8px;">¿Qué áreas tienen más trabajo repetitivo?</p>
+      <p style="font-size:0.82rem;color:var(--muted);margin-bottom:20px;">Podés elegir más de una.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;">
+        <button class="diag-chip" data-val="Administración y facturación">Administración</button>
+        <button class="diag-chip" data-val="Atención al cliente y consultas">Atención al cliente</button>
+        <button class="diag-chip" data-val="RRHH y liquidación de sueldos">RRHH / Sueldos</button>
+        <button class="diag-chip" data-val="Reportes y seguimiento">Reportes</button>
+        <button class="diag-chip" data-val="Ventas y seguimiento de CRM">Ventas / CRM</button>
+        <button class="diag-chip" data-val="Logística y seguimiento de pedidos">Logística</button>
+        <button class="diag-chip" data-val="Comunicación interna">Comunicación</button>
+        <button class="diag-chip" data-val="Compras y proveedores">Compras</button>
+      </div>
+      <button id="diag-s3-next" onclick="diagNext(3)" style="display:none;background:#fff;color:var(--navy);border:none;border-radius:999px;padding:12px 28px;font-size:0.9rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;">Ver siguiente →</button>
+    </div>
+
+    <!-- STEP 4: ROL -->
+    <div id="diag-s4" class="diag-step" style="display:none;">
+      <p style="font-size:1.05rem;color:#fff;font-weight:500;margin-bottom:24px;">¿Cuál es tu rol en la empresa?</p>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:400px;">
+        <button class="diag-opt" data-val="CEO / Dueño / Socio">CEO / Dueño</button>
+        <button class="diag-opt" data-val="COO / Gerente de Operaciones">Gerente de Ops</button>
+        <button class="diag-opt" data-val="Director de RRHH / People">RRHH / People</button>
+        <button class="diag-opt" data-val="Gerente de Área">Gerente de Área</button>
+      </div>
+    </div>
+
+    <!-- LOADING -->
+    <div id="diag-loading" class="diag-step" style="display:none;text-align:center;padding:48px 0;">
+      <div style="font-size:2.5rem;margin-bottom:16px;animation:diag-pulse 1.2s infinite;">🧠</div>
+      <p style="color:#fff;font-size:1rem;font-weight:500;margin-bottom:8px;">Analizando tu empresa...</p>
+      <p style="color:var(--muted);font-size:0.85rem;">Identificando procesos automatizables</p>
+      <div style="display:flex;justify-content:center;gap:6px;margin-top:20px;">
+        <span class="diag-dot"></span><span class="diag-dot" style="animation-delay:.2s"></span><span class="diag-dot" style="animation-delay:.4s"></span>
+      </div>
+    </div>
+
+    <!-- RESULTADO -->
+    <div id="diag-result" class="diag-step" style="display:none;">
+      <div style="background:rgba(52,211,153,0.06);border:1px solid rgba(52,211,153,0.2);border-radius:16px;padding:28px;margin-bottom:24px;">
+        <p id="diag-insight" style="color:var(--accent3);font-size:0.9rem;line-height:1.6;margin-bottom:0;"></p>
+      </div>
+
+      <p style="color:var(--muted);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;margin-bottom:14px;">3 procesos automatizables en tu empresa</p>
+      <div id="diag-procesos" style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;"></div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px;">
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center;">
+          <p style="font-size:1.8rem;font-weight:700;color:var(--accent1);margin:0 0 4px;" id="diag-horas"></p>
+          <p style="font-size:0.78rem;color:var(--muted);margin:0;">horas/semana recuperadas</p>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center;">
+          <p style="font-size:1.8rem;font-weight:700;color:var(--accent3);margin:0 0 4px;" id="diag-usd"></p>
+          <p style="font-size:0.78rem;color:var(--muted);margin:0;">ahorro mensual estimado</p>
+        </div>
+      </div>
+
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;">
+        <p style="color:#fff;font-size:0.95rem;font-weight:500;margin-bottom:16px;">¿Querés el análisis completo con hoja de ruta?</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <input type="email" id="diag-email" placeholder="tu@empresa.com.ar" style="flex:1;min-width:200px;background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:8px;padding:11px 16px;color:#fff;font-size:0.9rem;font-family:'Outfit',sans-serif;outline:none;"/>
+          <button onclick="diagSubmitEmail()" style="background:var(--accent1);color:var(--navy);border:none;border-radius:8px;padding:11px 22px;font-size:0.9rem;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif;white-space:nowrap;">Quiero el análisis →</button>
+        </div>
+        <p id="diag-email-status" style="display:none;color:var(--accent3);font-size:0.82rem;margin-top:10px;"></p>
+      </div>
+
+      <button onclick="diagReset()" style="background:transparent;border:none;color:var(--muted);font-size:0.8rem;cursor:pointer;margin-top:16px;font-family:'Outfit',sans-serif;text-decoration:underline;">Hacer el diagnóstico de nuevo</button>
+    </div>
+
+    <!-- ERROR -->
+    <div id="diag-error" class="diag-step" style="display:none;text-align:center;padding:32px 0;">
+      <p style="color:var(--muted);font-size:0.9rem;">Algo salió mal. <button onclick="diagReset()" style="background:none;border:none;color:var(--accent1);cursor:pointer;font-family:'Outfit',sans-serif;font-size:0.9rem;text-decoration:underline;">Intentar de nuevo</button></p>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<style>
+  .diag-opt {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 12px;
+    color: var(--text);
+    font-size: 0.88rem;
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+  }
+  .diag-opt:hover { border-color: var(--accent1); color: #fff; background: rgba(96,165,250,0.08); }
+  .diag-opt.selected { border-color: var(--accent1); background: rgba(96,165,250,0.12); color: #fff; }
+  .diag-chip {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 16px;
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .diag-chip:hover { border-color: var(--accent2); color: #fff; }
+  .diag-chip.selected { border-color: var(--accent2); background: rgba(167,139,250,0.12); color: #fff; }
+  .diag-dot {
+    width: 8px; height: 8px;
+    background: var(--accent1);
+    border-radius: 50%;
+    display: inline-block;
+    animation: diag-bounce 1s infinite;
+  }
+  @keyframes diag-bounce {
+    0%,80%,100% { transform: translateY(0); opacity:0.4; }
+    40% { transform: translateY(-8px); opacity:1; }
+  }
+  @keyframes diag-pulse {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+  .diag-proceso-item {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px;
+  }
+  .diag-proceso-icon { font-size: 1.2rem; flex-shrink:0; }
+  .diag-proceso-text { font-size: 0.88rem; color: var(--text); line-height:1.4; }
+</style>
+
+<script>
+  const diagData = { sector:'', empleados:'', areas:[], rol:'' };
+  const stepIcons = ['⚡','🔄','📊'];
+
+  function diagShowStep(n) {
+    ['s1','s2','s3','s4','loading','result','error'].forEach(id => {
+      document.getElementById('diag-'+id).style.display = 'none';
+    });
+    document.getElementById('diag-'+n).style.display = 'block';
+    const pct = n === 's1' ? 25 : n === 's2' ? 50 : n === 's3' ? 75 : n === 's4' ? 90 : 100;
+    document.getElementById('diag-bar').style.width = pct + '%';
+    document.getElementById('diag-pct').textContent = pct + '%';
+    const labels = {s1:'Paso 1 de 4',s2:'Paso 2 de 4',s3:'Paso 3 de 4',s4:'Paso 4 de 4',loading:'Analizando...',result:'Tu diagnóstico',error:''};
+    document.getElementById('diag-step-label').textContent = labels[n] || '';
+  }
+
+  document.querySelectorAll('#diag-s1 .diag-opt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      diagData.sector = btn.dataset.val;
+      diagShowStep('s2');
+    });
+  });
+
+  document.querySelectorAll('#diag-s2 .diag-opt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      diagData.empleados = btn.dataset.val;
+      diagShowStep('s3');
+    });
+  });
+
+  document.querySelectorAll('#diag-s3 .diag-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('selected');
+      diagData.areas = [...document.querySelectorAll('#diag-s3 .diag-chip.selected')].map(b => b.dataset.val);
+      document.getElementById('diag-s3-next').style.display = diagData.areas.length > 0 ? 'inline-block' : 'none';
+    });
+  });
+
+  function diagNext(step) {
+    if (step === 3) diagShowStep('s4');
+  }
+
+  document.querySelectorAll('#diag-s4 .diag-opt').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      diagData.rol = btn.dataset.val;
+      if (diagData.areas.length === 0) diagData.areas = ['Administración y facturación'];
+      diagShowStep('loading');
+      try {
+        const res = await fetch('/.netlify/functions/diagnostico', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(diagData)
+        });
+        if (!res.ok) throw new Error('API error');
+        const d = await res.json();
+        renderDiagResult(d);
+      } catch(e) {
+        diagShowStep('error');
+      }
+    });
+  });
+
+  function renderDiagResult(d) {
+    document.getElementById('diag-insight').textContent = '"' + d.insight + '"';
+    document.getElementById('diag-horas').textContent = d.ahorro_horas;
+    document.getElementById('diag-usd').textContent = 'U$S ' + d.ahorro_usd.toLocaleString('es-AR');
+    const cont = document.getElementById('diag-procesos');
+    cont.innerHTML = '';
+    (d.procesos || []).forEach((p, i) => {
+      cont.innerHTML += `<div class="diag-proceso-item"><span class="diag-proceso-icon">${stepIcons[i]||'✅'}</span><span class="diag-proceso-text">${p}</span></div>`;
+    });
+    diagShowStep('result');
+  }
+
+  async function diagSubmitEmail() {
+    const email = document.getElementById('diag-email').value.trim();
+    if (!email || !email.includes('@')) {
+      document.getElementById('diag-email-status').style.display='block';
+      document.getElementById('diag-email-status').textContent='Ingresá un email válido.';
+      document.getElementById('diag-email-status').style.color='#f97316';
+      return;
+    }
+    try {
+      await fetch('https://formspree.io/f/xwvaolvy', {
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body: JSON.stringify({
+          email,
+          sector: diagData.sector,
+          empleados: diagData.empleados,
+          areas: diagData.areas.join(', '),
+          rol: diagData.rol,
+          _subject: 'Nuevo lead diagnóstico IA — ' + diagData.sector
+        })
+      });
+    } catch(e) {}
+    const st = document.getElementById('diag-email-status');
+    st.style.display='block';
+    st.style.color='var(--accent3)';
+    st.textContent='¡Listo! Te contactamos en menos de 24 hs con el análisis completo.';
+    document.getElementById('diag-email').disabled=true;
+  }
+
+  function diagReset() {
+    diagData.sector=''; diagData.empleados=''; diagData.areas=[]; diagData.rol='';
+    document.querySelectorAll('.diag-opt,.diag-chip').forEach(b=>b.classList.remove('selected'));
+    document.getElementById('diag-s3-next').style.display='none';
+    document.getElementById('diag-email').value='';
+    document.getElementById('diag-email').disabled=false;
+    document.getElementById('diag-email-status').style.display='none';
+    diagShowStep('s1');
+  }
+
+  diagShowStep('s1');
+</script>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-inner" style="padding-top:0;">
