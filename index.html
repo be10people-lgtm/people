@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6BNNBL0VDF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-6BNNBL0VDF');
-</script>
 <meta charset="UTF-8"/>
 <meta name="description" content="Be+People Consulting — Consultoría especializada en transformación de personas e IA para empresas de Latinoamérica. Rediseñamos roles, culturas y modelos operativos para que la estrategia se convierta en ejecución real."/>
 <meta name="keywords" content="consultoría RRHH, transformación organizacional, inteligencia artificial empresas, upskilling, reskilling, liderazgo, people analytics, change management, Argentina, Latinoamérica, HR consulting"/>
@@ -327,7 +318,83 @@
     .form-row { grid-template-columns: 1fr; }
     .contact-inner { grid-template-columns: 1fr !important; }
   }
+.cookie-banner {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999;
+    background: #0A0F1E; color: #E2E8F0; border-top: 1px solid #D4A017;
+    padding: 18px 24px; display: flex; flex-wrap: wrap; gap: 16px;
+    align-items: center; justify-content: space-between;
+    font-family: 'Outfit', sans-serif; font-size: 0.875rem; line-height: 1.5;
+  }
+  .cookie-banner p { margin: 0; max-width: 620px; color: #E2E8F0; }
+  .cookie-banner a { color: #D4A017; text-decoration: underline; }
+  .cookie-banner-actions { display: flex; gap: 10px; flex-shrink: 0; }
+  .cookie-banner button {
+    font-family: 'Outfit', sans-serif; font-size: 0.8125rem; font-weight: 600;
+    border-radius: 999px; padding: 10px 20px; cursor: pointer; border: none;
+    transition: all 0.2s;
+  }
+  #cookie-accept { background: #2563EB; color: #fff; }
+  #cookie-accept:hover { background: #1d4ed8; }
+  #cookie-reject { background: transparent; color: #94A3B8; border: 1px solid #94A3B8 !important; }
+  #cookie-reject:hover { color: #E2E8F0; border-color: #E2E8F0 !important; }
+  @media (max-width: 600px) {
+    .cookie-banner { flex-direction: column; align-items: stretch; text-align: center; }
+    .cookie-banner-actions { justify-content: center; }
+  }
 </style>
+<script>
+(function () {
+  var CONSENT_KEY = 'bepeople_cookie_consent';
+  var GA_ID = 'G-6BNNBL0VDF';
+  var CLARITY_ID = 'xpysdunvx2';
+
+  function loadAnalytics() {
+    var ga = document.createElement('script');
+    ga.async = true;
+    ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    document.head.appendChild(ga);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', GA_ID);
+
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+      t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, 'clarity', 'script', CLARITY_ID);
+  }
+
+  function showBanner() {
+    var b = document.createElement('div');
+    b.className = 'cookie-banner';
+    b.id = 'cookie-banner';
+    b.innerHTML =
+      '<p>Usamos cookies propias y de terceros (Google Analytics, Microsoft Clarity) para entender cómo se navega el sitio y mejorar tu experiencia. Podés aceptarlas o rechazarlas. Más info en nuestra <a href="#">política de privacidad</a>.</p>' +
+      '<div class="cookie-banner-actions">' +
+      '<button id="cookie-reject" type="button">Rechazar</button>' +
+      '<button id="cookie-accept" type="button">Aceptar</button>' +
+      '</div>';
+    document.body.appendChild(b);
+    document.getElementById('cookie-accept').addEventListener('click', function () {
+      localStorage.setItem(CONSENT_KEY, 'accepted');
+      loadAnalytics();
+      b.remove();
+    });
+    document.getElementById('cookie-reject').addEventListener('click', function () {
+      localStorage.setItem(CONSENT_KEY, 'rejected');
+      b.remove();
+    });
+  }
+
+  var consent = localStorage.getItem(CONSENT_KEY);
+  if (consent === 'accepted') {
+    loadAnalytics();
+  } else if (consent !== 'rejected') {
+    document.addEventListener('DOMContentLoaded', showBanner);
+  }
+})();
+</script>
 </head>
 <body>
 
